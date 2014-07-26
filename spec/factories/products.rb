@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :product do
     name "MyString"
-    image "MyString"
+    image File.open(Rails.root.join 'spec', 'resources', 'images', 'sample.jpeg')
   end
 end
