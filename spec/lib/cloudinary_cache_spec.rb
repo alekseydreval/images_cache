@@ -29,12 +29,12 @@ describe CloudinaryCache do
     increase_popularity product_b, 2
     increase_popularity product_c, 1
 
-    # First call to image_url
+    # First call to image_url – returns link from Cloudinary CDN
     [product_a, product_b, product_c].each do |p| 
       p.image_url(:standard).should_not =~ /images\/cached/ 
     end
 
-    # Subsequent calls
+    # Subsequent calls – return local link to files
     product_a.image_url(:standard).should =~ /images\/cached/
     product_b.image_url(:standard).should =~ /images\/cached/
     product_c.image_url(:standard).should_not =~ /images\/cached/
