@@ -1,0 +1,21 @@
+- standard = @product.image_url(:standard)
+- mini     = @product.image_url(:mini)
+%h1 Products#show
+%div
+  Name:
+  %b= @product.name
+%h2
+  Popularity: #{@product.popularity}
+= image_tag standard
+= image_tag mini
+%br/
+%div
+  Image href standard:
+  %b
+    = standard
+%div
+  Image href mini:
+  %b
+    = mini
+%div 
+  = link_to '[back]', products_path

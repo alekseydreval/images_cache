@@ -1,0 +1,20 @@
+%h1 Products#index
+- if @products.present?
+  %table
+    %thead
+      %tr
+        %th Product
+        %th Popularity
+        %th Image href
+    %tbody
+      - @products.each_with_index do |product, ind|
+        - standard = product.image_url(:standard)
+        %tr
+          %td
+            = link_to product_path(product) do
+              = image_tag standard
+          %td
+            = product.popularity
+          %td{style: "text-align:center;"}
+            = standard
+= link_to 'New product', new_product_path

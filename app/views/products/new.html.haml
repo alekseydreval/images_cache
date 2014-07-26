@@ -1,0 +1,5 @@
+%h1 Products#new
+= simple_form_for @product do |f|
+  = f.input :name , required: true, input_html: { size: 30 }
+  = f.input :image, label: 'Choose image', required: true
+  = f.submit
