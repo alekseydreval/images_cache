@@ -25,11 +25,26 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
+gem 'simple_form'
+
+# testing
 gem 'rspec-rails'
 gem 'factory_girl_rails'
+gem 'database_cleaner'
+
+# image processing
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'cloudinary'
+
+# caching & bg-jobs
+gem 'delayed_job_active_record'
+gem 'redis'
+gem 'hiredis', "~> 0.4.5"
+
+# debug
+gem 'pry-rails'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
