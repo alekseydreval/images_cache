@@ -7,7 +7,7 @@ module CloudinaryCache
   CACHE_LIMIT = 2          # CACHE_LIMIT + 1 most popular items
   REDIS       = Redis.new
 
-
+  # Hook that adds initialize serialized column in inclusive model
   def self.included base
     base.class_eval do
       unless base.column_names.include? 'cloudinary_cache'
@@ -16,7 +16,8 @@ module CloudinaryCache
       serialize :cloudinary_cache, Hash
     end
   end
-
+ 
+  # Monkey-patch standart `image_url` to return cached version of image
   def image_url version = :standard
     original_url = super(version)
     cached_url   = cached_url(version)
@@ -30,11 +31,13 @@ module CloudinaryCache
       original_url
     end
   end
-
+  
+  # Returns popularity of the model
   def popularity
     REDIS.zscore(self.class.name, self.id) || 0
   end
-
+  
+  # Increments popularity of the model
   def increment_popularity
     REDIS.zincrby self.class.name, 1, self.id
   end
